@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+     @import url(css/reset.css);
+        html,body{height: 100%; background: url(img/gallery/08.jpg) no-repeat  center;background-size: cover}
+        .gnb{position: fixed;left:100px;top:100px;z-index: 100}
+        .gnb li{height: 60px;/* border:5px solid green; */overflow: hidden}
+        .gnb li a{display: block;height: 60px;line-height: 60px;font-size: 40px;font-weight: bold;font-family: 'arial';color:#fff;
+        opacity:.6;position: relative;transition:top .3s;}
+    </style>
+ 
+</head>
+<body>
+    <ul class="gnb">
+        <li>
+            <a href="#">Menu1</a>
+        </li>
+        <li>
+            <a href="#">Menu2</a>
+        </li>
+        <li>
+            <a href="#">Menu3</a>
+        </li>
+        <li>
+            <a href="#">Menu4</a>
+        </li>
+    </ul>
+    <script>
+       const lists = document.querySelector('.gnb')
+       const list = document.querySelectorAll('.gnb li')
+      
+       list.forEach((ele)=> {
+        let newA = ele.children[0].cloneNode(true);  // cloneNode 하면 앞에 있는 애를 복제함. 노드의 칠드런이나 하위요소를 복제하면 true, 하나만 복제하면 false를 넣어주면 됨.
+         console.log(newA)
+         newA.style.opacity = '1';
+         ele.appendChild(newA) //요소 마지막에 노드 삽입하기
+          // cloneNode()
+          // console.log(ele.childNodes)
+          // console.log(children)
+        
+       })
+       list.forEach((ele)=>{
+          let childA = ele.children;
+          console.log(childA)
+          console.log(childA.length)
+          //over
+          ele.addEventListener('mouseover',()=>{  //마우스를 올렸을 떄
+            for(let i=0; i<childA.length; i++){
+              childA[i].style.top = '-60px';
+             }
+
+          })
+          //out
+          ele.addEventListener('mouseout',()=>{  
+            for(let i=0; i<childA.length; i++){
+              childA[i].style.top = '0px';
+             }
+
+          })
+          
+       })
+   
+    </script>
+</body>
+</html>
